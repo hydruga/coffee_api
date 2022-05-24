@@ -16,6 +16,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Get("/", handlers.GetProducts)
 	r.Put("/{id:[0-9]+}", handlers.UpdateProduct)
+	r.Delete("/{id:[0-9]+}", handlers.DeleteProduct)
 	r.Post("/", handlers.AddProduct)
 	fmt.Println("Starting server on ", servePort)
 	log.Fatal(http.ListenAndServe(servePort, r))

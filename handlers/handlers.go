@@ -1,8 +1,10 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -71,5 +73,23 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		_, err := db.Exec("UPDATE products SET name = $1 where id = $2 ", prod.Name, id)
 		CheckError(err)
 	}
+
+}
+
+func DeleteProduct(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	db := models.SetupDB()
+	var s sql.NullString
+
+	err := db.QueryRow("SELECT name from products where id = $1", id).Scan(&s)
+	if s.Valid {
+		fmt.Println(s)
+	} else {
+		fmt.Println("No row returned.", err)
+		return
+	}
+
+	db.Exec("DELETE from products where id = $1", id)
+	log.Printf("Delete was successful on id %s", id)
 
 }
