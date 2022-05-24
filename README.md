@@ -8,7 +8,6 @@ This api works with Postgresql, using a table named "product" which follows the 
 id = primary key, autoincrementing, name = varchar, description =  varchar , price = float (I had issues with conversion from go to postgresql money values).
 
 TO DO:
-  - Add DeleteHandler
   - Add json validation logic with https://github.com/go-playground/validator
   - Add Swagger and Redoc for documentation
   - Create subroutes
