@@ -32,8 +32,9 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 		CheckError(err)
 		prod = append(prod, bev)
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(prod)
+
 }
 
 func AddProduct(w http.ResponseWriter, r *http.Request) {
