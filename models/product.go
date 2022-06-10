@@ -1,9 +1,11 @@
 package models
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	"log"
+	"time"
 )
 
 type Product struct {
@@ -24,8 +26,11 @@ const (
 func SetupDB() *sql.DB {
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASS, DB_Name)
 	db, _ := sql.Open("postgres", dbinfo)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Second*5))
+	defer cancel()
 	// Need to ping db to ensure it is open and connected.
-	err := db.Ping()
+	err := db.PingContext(ctx)
 	if err != nil {
 		log.Fatalf("Postgres not responsive %v\n", err)
 	}
