@@ -18,9 +18,9 @@ type Product struct {
 // Database logic here.
 
 const (
-	DB_USER = "coffeeguy"
-	DB_PASS = "mypassword"
-	DB_Name = "products"
+	DB_USER = "coffeeguy"  // Unsafe
+	DB_PASS = "mypassword" // Unsafe
+	DB_Name = "products"   // Unsafe
 )
 
 func SetupDB() *sql.DB {
