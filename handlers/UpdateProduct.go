@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/hydruga/coffee_api/models"
 )
 
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
-	id := chi.URLParam(r, "id")
+	id := ParseIDParam(r)
 	var prod models.Product
 	err := json.NewDecoder(r.Body).Decode(&prod)
 	CheckError(err)

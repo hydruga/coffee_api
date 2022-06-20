@@ -6,12 +6,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/hydruga/coffee_api/models"
 )
 
 func DeleteProduct(w http.ResponseWriter, r *http.Request) {
-	id := chi.URLParam(r, "id")
+	id := ParseIDParam(r)
 	db := models.SetupDB()
 	var s sql.NullString
 
