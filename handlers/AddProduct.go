@@ -15,7 +15,7 @@ func AddProduct(w http.ResponseWriter, r *http.Request) {
 	CheckError(err)
 
 	if newProd.Name == "" {
-		fmt.Fprintf(w, "<h1> No product was supplied</h1>")
+		fmt.Fprintf(w, " No product was supplied ")
 	} else {
 		db := models.SetupDB()
 		row := db.QueryRow(`Insert into products(name, description, price) 
@@ -23,4 +23,5 @@ func AddProduct(w http.ResponseWriter, r *http.Request) {
 		err := row.Err()
 		CheckError(err)
 	}
+
 }
