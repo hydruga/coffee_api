@@ -25,5 +25,6 @@ jobs:
       run: go install 
       
     - name: Run App
-      run: /bin/coffee_api
+      run: pwd
+      
 
