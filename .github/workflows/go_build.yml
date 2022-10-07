@@ -25,5 +25,5 @@ jobs:
       run: go install 
       
     - name: Run App
-      run: ./$GOPATH/bin/coffee_api
+      run: /bin/coffee_api
 
