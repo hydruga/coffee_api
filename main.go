@@ -41,6 +41,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Get("/", handlers.GetProducts)
+	r.Get("/health", handlers.HealthCheck)
 	r.Put("/{id:[0-9]+}", handlers.UpdateProduct)
 	r.Delete("/{id:[0-9]+}", handlers.DeleteProduct)
 	r.Post("/", handlers.AddProduct)
