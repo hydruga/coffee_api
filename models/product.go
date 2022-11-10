@@ -3,7 +3,6 @@ package models
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"log"
 	"time"
 )
@@ -24,8 +23,9 @@ const (
 )
 
 func SetupDB() *sql.DB {
-	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASS, DB_Name)
-	db, _ := sql.Open("postgres", dbinfo)
+	// dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASS, DB_Name)
+	dsn := "postgres://coffeeguy:mypassword@localhost:5444/products?sslmode=disable"
+	db, _ := sql.Open("postgres", dsn)
 
 	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Second*5))
 	defer cancel()
